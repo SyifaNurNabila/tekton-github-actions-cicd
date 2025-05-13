@@ -2,9 +2,11 @@ name: CI Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   lint:
@@ -16,9 +18,11 @@ jobs:
         with:
           python-version: '3.10'
       - name: Install dependencies
-        run: pip install flake8
+        run: |
+          pip install flake8
       - name: Lint with flake8
-        run: flake8 app/
+        run: |
+          flake8 app/
 
   test:
     runs-on: ubuntu-latest
@@ -29,6 +33,8 @@ jobs:
         with:
           python-version: '3.10'
       - name: Install dependencies
-        run: pip install nose
+        run: |
+          pip install nose
       - name: Run unit tests with nose
-        run: nosetests app/
+        run: |
+          nosetests app/
